@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import resObj from "../utils/mockData.js";
 import RestaturantCard from "./ResturantCard";
+import Shimmer from "./Shimmer.jsx";
 
 const Body = () => {
   // Master copy of all restaurants (never mutated directly)
@@ -19,18 +20,19 @@ const[search,setSearch]=useState("");
     );
     const json = await data.json();
     console.log(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants,
+      json.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
     );
 
     setListOfRestaurants(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants,
+      json.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
     );
     setFilteredResturant(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants,
+      json.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
     );
   };
 
-  return (
+
+  return listOfRestaurants?.length==0? <Shimmer/> : (
     <div className="body">
       <div className="filter-search">
         <div
