@@ -5,14 +5,9 @@ const Body = () => {
   return (
     <div className="body">
       <div className="res-container">
-        {/* {resObj.restaurants.map((resturant) => (
+        {resObj.restaurants.map((resturant) => (
           <RestaturantCard key={resturant.info.id} resData={resturant.info} />
-        ))} */}
-        <RestaturantCard resData={resObj.restaurants[0].info} />
-        <RestaturantCard resData={resObj.restaurants[1].info} />
-        <RestaturantCard resData={resObj.restaurants[2].info} />
-        <RestaturantCard resData={resObj.restaurants[3].info} />
-        <RestaturantCard resData={resObj.restaurants[4].info} />
+        ))}
       </div>
     </div>
   );
