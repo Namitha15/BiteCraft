@@ -8,7 +8,7 @@ const Body = () => {
 
   // The actual list rendered on screen
   const [filteredResturant, setFilteredResturant] = useState([]);
-
+const[search,setSearch]=useState("");
   useEffect(() => {
     featchData();
   }, []);
@@ -39,7 +39,7 @@ const Body = () => {
             // Filter using the master copy, but update the filtered state.
             // Using > 4.5 because all restaurants in mock data are > 4.0.
             const filtered = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4,
+              (res) => res.info.avgRating > 4.5,
             );
             console.log(filtered);
 
@@ -47,6 +47,22 @@ const Body = () => {
           }}
         >
           Top Rated Restaurant
+        </div>
+        <div className="search">
+          <input type="text" className="search-box" value={search} onChange={(e)=>setSearch(e.target.value)}></input>
+         <button  className="search-btn" onClick={()=> {
+          const filteredResturant=listOfRestaurants.filter (res=>res.info.name.toLowerCase().includes(search.toLowerCase()))
+         
+          setFilteredResturant(filteredResturant);
+          
+         }}>Search</button>
+         <div className="clear" >
+          <button className="clear-btn" onClick={()=>{
+            setFilteredResturant(listOfRestaurants);
+            setSearch("");
+          }}>Clear</button>
+
+         </div>
         </div>
       </div>
       <div className="res-container">
